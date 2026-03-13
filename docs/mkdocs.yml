@@ -1,9 +1,6 @@
 site_name: NFDI-MatWerk Zenodo Uploader
 site_description: Documentation for the NFDI-MatWerk Zenodo upload portal
-site_url: http://localhost:8080
-repo_url: https://github.com/ebrahimnorouzi/nfdi-matwerk-zenodo-uploader
-repo_name: nfdi-matwerk-zenodo-uploader
-edit_uri: edit/main/docs/docs/
+site_url: https://ebrahimnorouzi.github.io/nfdi-matwerk-zenodo-uploader/
 
 theme:
   name: material
@@ -29,8 +26,6 @@ theme:
     - search.suggest
     - content.code.copy
     - content.tabs.link
-  icon:
-    repo: fontawesome/brands/github
   logo: assets/logo.svg
   favicon: assets/logo.svg
 
@@ -77,9 +72,5 @@ nav:
 
 extra:
   social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/ebrahimnorouzi/nfdi-matwerk-zenodo-uploader
     - icon: fontawesome/solid/globe
       link: https://nfdi-matwerk.de
-  analytics:
-    provider: custom

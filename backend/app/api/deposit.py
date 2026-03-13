@@ -8,12 +8,9 @@ POST /deposit/{id}/publish    → publish the deposition
 DELETE /deposit/{id}          → discard a draft
 """
 
-import asyncio
-from typing import Annotated
 
 import httpx
 from fastapi import APIRouter, Depends, File, HTTPException, Request, UploadFile
-from fastapi.responses import JSONResponse
 
 from app.core.config import settings
 from app.models.deposit import DepositMetadata
