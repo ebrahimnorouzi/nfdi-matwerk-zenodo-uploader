@@ -1,0 +1,49 @@
+version: "3.9"
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: matwerk-backend
+    restart: unless-stopped
+    environment:
+      - ZENODO_CLIENT_ID=${ZENODO_CLIENT_ID}
+      - ZENODO_CLIENT_SECRET=${ZENODO_CLIENT_SECRET}
+      - ZENODO_BASE_URL=${ZENODO_BASE_URL:-https://sandbox.zenodo.org}
+      - OAUTH_REDIRECT_URI=${OAUTH_REDIRECT_URI:-http://127.0.0.1:3000/auth/callback}
+      - SECRET_KEY=${SECRET_KEY:-changeme-in-production}
+      - FRONTEND_URL=${FRONTEND_URL:-http://127.0.0.1:3000}
+      - COMMUNITY_ID=${COMMUNITY_ID:-nfdi-matwerk}
+    ports:
+      - "8000:8000"
+    networks:
+      - matwerk-net
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: matwerk-frontend
+    restart: unless-stopped
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - matwerk-net
+
+  docs:
+    build:
+      context: ./docs
+      dockerfile: Dockerfile
+    container_name: matwerk-docs
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    networks:
+      - matwerk-net
+
+networks:
+  matwerk-net:
+    driver: bridge
